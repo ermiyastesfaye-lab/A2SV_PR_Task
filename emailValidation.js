@@ -3,11 +3,13 @@ function isValidEmail(email) {
 
   email = email.trim();
 
+  //Ensure only one "@"
   const atIndex = email.indexOf("@");
   if (atIndex === -1 || email.lastIndexOf("@") !== atIndex) {
     return false;
   }
 
+  // Ensure domain has at least one dot, not at start or end
   const domain = email.split("@")[1];
   if (!domain || domain.startsWith(".") || domain.endsWith(".")) {
     return false;
@@ -17,6 +19,7 @@ function isValidEmail(email) {
     return false;
   }
 
+  // Validate using regex
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailRegex.test(email);
 }
